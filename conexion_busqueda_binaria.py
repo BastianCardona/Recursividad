@@ -17,3 +17,7 @@ def busqueda_binaria_recursiva(arreglo, objetivo, izquierda=0, derecha=None):
         return busqueda_binaria_recursiva(arreglo, objetivo, medio + 1, derecha)
     else:
         return busqueda_binaria_recursiva(arreglo, objetivo, izquierda, medio - 1)
+
+direcciones = [101, 205, 330, 415, 512, 600, 789, 850]
+resultado = busqueda_binaria_recursiva(direcciones, 512)
+print(resultado)  # 4
