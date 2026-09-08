@@ -16,3 +16,4 @@ función calcularEspacio(carpeta):
     return espacioTotal
 
 ## c. ) Tracen la pila de llamadas para una estructura de ejemplo con 3 niveles de subcarpetas que ustedes mismos propongan
+El punto c está en el archivo de `exploración_carpetas.py`.
