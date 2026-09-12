@@ -23,27 +23,27 @@ class Carpeta:
         self.subcarpetas = subcarpetas if subcarpetas else []
 
 
-def calcularEspacio(carpeta, nivel=0):
-    """Calcula recursivamente el espacio total (en MB) de una carpeta."""
-    sangria = "  " * nivel
-    print(f"{sangria}-> Entrando a '{carpeta.nombre}'")
+    def calcularEspacio(carpeta, nivel=0):
+        """Calcula recursivamente el espacio total (en MB) de una carpeta."""
+        sangria = "  " * nivel
+        print(f"{sangria}-> Entrando a '{carpeta.nombre}'")
 
-    # Sumar el tamano de los archivos directos de esta carpeta
-    espacio_total = sum(archivo.tamano_mb for archivo in carpeta.archivos)
+        # Sumar el tamano de los archivos directos de esta carpeta
+        espacio_total = sum(archivo.tamano_mb for archivo in carpeta.archivos)
 
-    # Caso base: la carpeta no tiene subcarpetas
-    if not carpeta.subcarpetas:
-        print(f"{sangria}   (sin subcarpetas -> caso base) "
-              f"= {espacio_total} MB")
+        # Caso base: la carpeta no tiene subcarpetas
+        if not carpeta.subcarpetas:
+            print(f"{sangria}   (sin subcarpetas -> caso base) "
+                f"= {espacio_total} MB")
+            return espacio_total
+
+        # Caso recursivo: sumar el espacio de cada subcarpeta
+        for subcarpeta in carpeta.subcarpetas:
+            espacio_total += calcularEspacio(subcarpeta, nivel + 1)
+
+        print(f"{sangria}<- Saliendo de '{carpeta.nombre}' "
+            f"= {espacio_total} MB")
         return espacio_total
-
-    # Caso recursivo: sumar el espacio de cada subcarpeta
-    for subcarpeta in carpeta.subcarpetas:
-        espacio_total += calcularEspacio(subcarpeta, nivel + 1)
-
-    print(f"{sangria}<- Saliendo de '{carpeta.nombre}' "
-          f"= {espacio_total} MB")
-    return espacio_total
 
 
 def construir_ejemplo():
